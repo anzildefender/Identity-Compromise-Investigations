@@ -19,13 +19,40 @@ Initially, I reviewed the audit logs to identify key fields essential for the in
 
 *Screenshot 1: Key Fields.*
 
+**Query**: index=cloud | table ClientIPAddress, Operation, UserId, Workload
+
+We have 242 Events  combining both Exchange and Active Directory workloads
+
+![result](images/result.png)
+
+*Screenshot 3: 242 Events.*
+
+
 ### Step 2: Reviewing Audit Logs
 
 I started by accessing the Microsoft 365 Unified Audit Logs through Splunk, focusing specifically on user login events (`Operation=UserLoggedIn`). This allowed me to quickly identify relevant log entries.
 
+![User LoggedIn](images/userloggedin.png)
+
+*Screenshot 2: Searching Operation=UserLoggedIn.*
+
+Now we narrowed down the events from 242 to just 23 !!
+
+Query: index=cloud Operation=UserLoggedIn | table ClientIPAddress, Operation, UserId, Workload
+
+
+
 ### Step 3: Removing Non-User Entries
 
 To make my analysis accurate, I filtered out any system-generated logs (`UserType!=4`) so I could concentrate solely on user-related activities.
+
+![Removed System Generated Logs](images/systemlogs.png)
+
+*Screenshot 2: Filtering Out System Generated Logs.*
+
+Query: index=cloud Operation=UserLoggedIn UserType!=4 | stats count by _time,ActorIpAddress,ClientIP, Operation, UserId, Workload
+
+
 
 ### Step 4: Checking IP Addresses
 
