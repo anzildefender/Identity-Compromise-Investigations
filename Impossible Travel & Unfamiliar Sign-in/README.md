@@ -56,13 +56,28 @@ Query: index=cloud Operation=UserLoggedIn UserType!=4 | stats count by _time,Act
 
 ### Step 4: Checking IP Addresses
 
-I extracted IP addresses from fields like `ActorIpAddress` and `ClientIP`. Using the OSINT tool ipinfo.io, I performed geolocation checks to determine where these logins originated from.
+Discovered 2 IP addresses related to Operation=UserLoggedIn
+
+![IP Addresses](images/ip2.png)
+
+*Screenshot 2: IP addresses related to UserLoggedIn.*<br><br>
+
+Next i conducted some OSINT on the ip addresses using a site called ipinfo.io, Upon checking the geolocation my observations are :
+
+IP '181.214.153.165' user 'schan' logged in from Vancouver, Canada
+![Schan](images/schan.png)
+IP '181.214.153.176' user 'jchan' logged in from Vancouver, Canada
+![jchan](images/jchan1.png)
+IP '188.214.125.138' user 'jchan' logged in from singapore 
+![jchan2](images/jchan2.png)
+
+
+Upon analyzing we can clearly see that user 'jchan' Logged in from canada and right after 13 minutes he logged in from singapore
+This scenario from user 'jchan' indicated potential impossible travel and raised immediate security concerns.
+
+
 
 ### Step 5: Detecting Impossible Travel
-
-While analyzing login locations, I discovered a suspicious scenario involving a user named "JChan," who logged in from Vancouver, Canada, and then just minutes later from Singapore. This scenario indicated potential impossible travel and raised immediate security concerns.
-
-### Step 6: Investigating Suspicious Activity
 
 Digging deeper, I analyzed activities associated with the suspicious Singapore IP (188.214.125.138). I identified several distinct malicious mailbox operations:
 
