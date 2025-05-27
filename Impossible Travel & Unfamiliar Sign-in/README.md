@@ -19,9 +19,9 @@ Initially, I reviewed the audit logs to identify key fields essential for the in
 
 *Screenshot 1: Key Fields.*
 
-**Query**: index=cloud | table ClientIPAddress, Operation, UserId, Workload
+**Query**: index=cloud | table ClientIPAddress, Operation, UserId, Workload<br><br>
 
-We have 242 Events  combining both Exchange and Active Directory workloads
+**We have 242 Events  combining both Exchange and Active Directory workloads**
 
 ![result](images/result.png)
 
