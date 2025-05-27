@@ -6,23 +6,35 @@ Conducted an investigation using Splunk and Microsoft 365 Audit Logs to identify
 
 ## How I Conducted the Investigation
 
-### Step 1: Reviewing Audit Logs
+### Step 1: Key Fields Selection
+
+Initially, I reviewed the audit logs to identify key fields essential for the investigation. The fields selected included:
+
+* `ClientIPAddress`
+* `Operation`
+* `UserId`
+* `Workload`
+
+![Key Fields](images/keyfields.png)
+*Screenshot 1: Key Fields.*
+
+### Step 2: Reviewing Audit Logs
 
 I started by accessing the Microsoft 365 Unified Audit Logs through Splunk, focusing specifically on user login events (`Operation=UserLoggedIn`). This allowed me to quickly identify relevant log entries.
 
-### Step 2: Removing Non-User Entries
+### Step 3: Removing Non-User Entries
 
 To make my analysis accurate, I filtered out any system-generated logs (`UserType!=4`) so I could concentrate solely on user-related activities.
 
-### Step 3: Checking IP Addresses
+### Step 4: Checking IP Addresses
 
 I extracted IP addresses from fields like `ActorIpAddress` and `ClientIP`. Using the OSINT tool ipinfo.io, I performed geolocation checks to determine where these logins originated from.
 
-### Step 4: Detecting Impossible Travel
+### Step 5: Detecting Impossible Travel
 
 While analyzing login locations, I discovered a suspicious scenario involving a user named "JChan," who logged in from Vancouver, Canada, and then just minutes later from Singapore. This scenario indicated potential impossible travel and raised immediate security concerns.
 
-### Step 5: Investigating Suspicious Activity
+### Step 6: Investigating Suspicious Activity
 
 Digging deeper, I analyzed activities associated with the suspicious Singapore IP (188.214.125.138). I identified several distinct malicious mailbox operations:
 
@@ -31,7 +43,7 @@ Digging deeper, I analyzed activities associated with the suspicious Singapore I
 * **Email Deletion:** Deleted critical draft emails, notably targeting sensitive financial information.
 * **Sending Malicious Emails:** Sent targeted phishing emails, including one titled "URGENT: Client Bank Account" with a malicious attachment (`NEW-BANK-ACCOUNT.pdf`).
 
-### Step 6: Identifying Sensitive Email Access
+### Step 7: Identifying Sensitive Email Access
 
 Further investigation revealed specific sensitive emails accessed by the attacker, including:
 
