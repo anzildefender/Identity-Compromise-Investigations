@@ -16,6 +16,7 @@ Initially, I reviewed the audit logs to identify key fields essential for the in
 * `Workload`
 
 ![Key Fields](images/keyfields.png)
+
 *Screenshot 1: Key Fields.*
 
 ### Step 2: Reviewing Audit Logs
