@@ -108,6 +108,5 @@ Digging deeper, I analyzed activities associated with the suspicious Singapore I
 * **ipinfo.io:** Assisted in IP address geolocation and threat assessment.
 
 ---
-....
 
 This hands-on investigative approach demonstrates my capabilities in effectively handling security incidents, conducting detailed log analyses, and swiftly responding to cybersecurity threats.
